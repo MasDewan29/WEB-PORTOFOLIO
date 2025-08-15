@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dhany Dewanto — Portfolio Premium</title>
+  <meta name="description" content="Dhany Dewanto — Designer & Frontend Developer. Portfolio premium, responsif, dan teroptimasi." />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+  <!-- Tailwind via CDN for convenience -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand:'#0b0b0c', gold:'#d4af37', goldsoft:'#c0b283', navy:'#071229' },
+          fontFamily: { display:['Playfair Display','serif'], sans:['Poppins','sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- AOS, GSAP, Swiper -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Icons (Boxicons) -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <style>
+    :root{--bg:#391595;--gold:#576515;--goldsoft:#c0b283}
+    html,body{height:188%;background:var(--bg);color:#e8e8e8;font-family:Poppins,system-ui,Arial;margin:0}
+    .glass{background:linear-gradient(180deg, rgba(235, 5, 5, 0.02), rgba(255,255,255,0.015));backdrop-filter: blur(6px);border:1px solid rgba(255, 24, 24, 0.04)}
+    .btn-gold{background:linear-gradient(90deg,var(--gold),var(--goldsoft));color:#081018}
+    .type-cursor{display:inline-block;width:2px;height:1.05em;background:rgba(255,255,255,0.9);margin-left:6px;vertical-align:bottom;animation:blink 1s steps(2) infinite}
+    @keyframes blink{50%{opacity:0}}
+    .nav-solid{background:rgba(0, 0, 0, 0.92);backdrop-filter: blur(1px)}
+    .skill-track{background:rgba(255,255,255,0.04);height:10px;border-radius:999px;overflow:hidden}
+    .skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold),var(--goldsoft));width:0;transition:width 1.1s ease-out}
+    .projectCard img{display:block;width:100%;height:230px;object-fit:cover}
+    .testimonial-card img{width:40px;height:40px;border-radius:970px;object-fit:cover}
+    .modal-open{overflow:hidden}
+    .accordion-close{display:none}
+    /* responsive tweaks */
+    @media (max-width:640px){
+      .projectCard img{height:160px}
+      .hero-title{font-size:1.8rem}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- scroll indicator -->
+  <div id="scrollBar" style="position:fixed;top:0;left:0;height:3px;background:linear-gradient(deg,var(--gold),var(--goldsoft));width:0;z-index:80"></div>
+
+  <!-- NAV -->
+  <nav id="siteNav" class="fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between glass">
+      <a href="#home" class="flex items-center gap-3" aria-label="Home">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-navy to-black flex items-center justify-center text-gold font-bold"></div>
+        <div class="hidden sm:block">
+          <div class="text-sm font-semibold">Dhany Dewanto Putra</div>
+          <div class="text-xs text-slate-400">Accounting • Frontend</div>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="hover:text-gold transition">About</a>
+        <a href="#skills" class="hover:text-gold transition">Skills</a>
+        <a href="#projects" class="hover:text-gold transition">Work</a>
+        <a href="#testimonials" class="hover:text-gold transition">Testimonials</a>
+        <a href="#contact" class="hover:text-gold transition">Contact</a>
+      </div>
+
+
+    <div id="mobileMenu" class="hidden md:hidden bg-[#060712] border-t border-slate-800" aria-hidden="true">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="#about" class="py-2">About</a>
+        <a href="#skills" class="py-2">Skills</a>
+        <a href="#projects" class="py-2">Work</a>
+        <a href="#testimonials" class="py-2">Testimonials</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+<!-- Boxicons CDN (Wajib untuk ikon) -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+  <!-- HERO -->
+  <header id="home" class="min-h-screen flex items-center" style="background:linear-gradient(180deg, rgba(3,7,12,0.6), rgba(3,7,12,0.8)), url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&s=') center/cover fixed;">
+    <div class="max-w-6xl mx-auto w-full px-6 hero-content relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div data-aos="fade-up" class="text-center lg:text-left">
+          <h1 class="font-display font-bold text-4xl md:text-6xl leading-tight hero-title">Halo, saya <span class="text-gold">Dhany Dewanto Putra</span></h1>
+          <div class="mt-4 text-slate-300 max-w-xl">
+            <div class="flex items-start gap-3">
+              <!-- pencil icon + type -->
+              <svg class="w-6 h-6 mt-1 text-gold" viewBox="0 0 24 24" fill="none" xmlns="https://www.w3.org/2000/svg"><path d="M3 21l3-1 11-11 2 2L8 22l-5 0z" stroke="#d4af37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <span class="typewriter" data-words='["Saya membuat antarmuka elegan dan fungsional.","Fokus pada tipografi, grid, dan micro-interactions.","Bisa bantu startup & brand tampil premium."]'></span>
+                <span class="type-cursor" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+
+        
+
+          
+           <!-- Social: WA, IG, GitHub (SVG) -->
+<div class="flex items-center gap-3">
+  <!-- WhatsApp -->
+  <a href="https://wa.me/6287721803753?text=Halo%20Dhany" target="_blank" rel="noopener" aria-label="WhatsApp"
+     class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-green-500/10 hover:bg-green-500/20 transition">
+    <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
+      <path fill="#25D366" d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.62-6.003C.122 5.281 5.403 0 12.06 0c3.17 0 6.154 1.235 8.4 3.48a11.79 11.79 0 013.48 8.4c-.003 6.657-5.284 11.938-11.94 11.938a11.9 11.9 0 01-6.003-1.62L.057 24z"/>
+      <path fill="#FFF" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.967-.94 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.521-.074-.149-.669-1.61-.916-2.205-.242-.58-.487-.5-.67-.509l-.572-.01c-.198 0-.52.074-.792.372-.273.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.718 2.006-1.41.248-.694.248-1.289.173-1.41-.074-.124-.272-.198-.57-.347z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://instagram.com/dhany_d.p" target="_blank" rel="noopener" aria-label="Instagram"
+     class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 hover:opacity-90 transition">
+    <svg viewBox="0 0 24 24" class="w-5 h-5" fill="white">
+      <path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.9.2 2.3.4.6.2 1 .4 1.5.9.5.5.7.9.9 1.5.2.4.3 1.1.4 2.3.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.9-.4 2.3-.2.6-.4 1-.9 1.5-.5.5-.9.7-1.5.9-.4.2-1.1.3-2.3.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.9-.2-2.3-.4-.6-.2-1-.4-1.5-.9-.5-.5-.7-.9-.9-1.5-.2-.4-.3-1.1-.4-2.3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.9.4-2.3.2-.6.4-1 .9-1.5.5-.5.9-.7 1.5-.9.4-.2 1.1-.3 2.3-.4C8.4 2.2 8.8 2.2 12 2.2m0-2.2C8.7 0 8.3 0 7 .1 5.7.2 4.9.3 4.2.6c-.8.3-1.5.7-2.2 1.4C1.3 2.7.9 3.4.6 4.2.3 4.9.2 5.7.1 7 0 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.2 2.1.5 2.8.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.7.3 1.5.4 2.8.5 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.1-.2 2.8-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.7.4-1.5.5-2.8.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.2-2.1-.5-2.8C22.7 1.3 22.3.6 21.6 0c-.7-.7-1.4-1.1-2.2-1.4C18.7-.7 17.9-.8 16.6-.9 15.3-1 14.9-1 12-1z"/>
+      <path d="M12 5.8A6.2 6.2 0 1 0 12 18.2 6.2 6.2 0 1 0 12 5.8m0-2.2A8.4 8.4 0 1 1 12 20.4 8.4 8.4 0 1 1 12 3.6z"/>
+      <circle cx="18.4" cy="5.6" r="1.2"/>
+    </svg>
+  </a>
+
+  <!-- GitHub -->
+  <a href="https://github.com/MasDewan29" target="_blank" rel="noopener" aria-label="GitHub"
+     class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-zinc-800 hover:bg-zinc-700 transition">
+    <svg viewBox="0 0 24 24" class="w-5 h-5" fill="white">
+      <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.7 1.9 2.9 1.3.1-.8.4-1.3.7-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6.2 0c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.8.9 1.2 2 1.2 3.3 0 4.6-2.8 5.6-5.5 5.9.4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/>
+    </svg>
+  </a>
+</div>
+                <div class="mt-6 flex flex-col sm:flex-row gap-3 items-center justify-start">
+            <a href="#contact" class="px-6 py-3 rounded-full btn-gold font-semibold shadow-lg hover:scale-[1.02] transition">Hire Me</a>
+          </div>
+         
+          <div class="mt-6 flex gap-4 items-center justify-start">
+          </div>
+        </div>
+
+    
+        <div data-aos="zoom-in" class="flex items-center justify-center">
+          <!-- hero photo: uses 'profile.jpg' by default, fallback to /mnt/data/profile.jpg if missing -->
+          <img id="heroPhoto" loading="lazy" src="WhatsApp Image 2025-08-15 at 02.41.16.jpeg" onerror="this.onerror=null;this.src='/mnt/data/profile.jpg';" alt="Foto Dhany" class="w-80 h-80 rounded-3xl object-cover shadow-2xl glass" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="-mt-8">
+    <!-- ABOUT -->
+    <section id="about" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid lg:grid-cols-3 gap-8 items-center">
+        <div class="lg:col-span-2" data-aos="fade-right">
+          <h2 class="text-3xl font-display font-bold">Tentang Saya</h2>
+          <p class="mt-4 text-slate-300 max-w-2xl">Halo! Saya Dhany Dewanto Putra, mahasiswa Jurusan Accounting di President University dengan pengalaman 3 tahun di front-end dan back-end development. Saya menggabungkan keahlian akuntansi dan teknologi digital untuk menciptakan proyek yang profesional, modern, interaktif, dan fungsional.
+
+Saya percaya bahwa setiap proyek adalah kesempatan untuk berinovasi, belajar, dan memberikan nilai nyata. Dengan dedikasi, kreativitas, dan kemampuan analitis, saya siap menghadirkan solusi yang efektif dan menarik.
+
+Jika Anda mencari seseorang yang kompeten, profesional, dan terbuka untuk kolaborasi, saya sangat antusias untuk bekerja sama, freelance, atau menangani proyek profesional bersama Anda. .</p>
+
+          <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="glass p-6 rounded-lg">
+              <div class="text-sm text-slate-400">Experience</div>
+              <div class="text-lg font-semibold">3+ Years</div>
+            </div>
+            <div class="glass p-6 rounded-lg">
+              <div class="text-sm text-slate-400">Completed</div>
+              <div class="text-lg font-semibold">50+ Projects</div>
+            </div>
+            <div class="glass p-6 rounded-lg">
+              <div class="text-sm text-slate-400">Clients</div>
+              <div class="text-lg font-semibold">65+ Happy</div>
+            </div>
+            <div class="glass p-6 rounded-lg">
+              <div class="text-sm text-slate-400">Availability</div>
+              <div class="text-lg font-semibold">Open</div>
+            </div>
+          </div>
+        </div>
+
+        <aside data-aos="fade-left" class="glass p-6 rounded-xl">
+          <img id="aboutPhoto" loading="lazy" src="profile.jpg"this.onerror=null;this.src='/mnt/data/profile.jpg';" alt="avatar" class="w-28 h-28 rounded-full object-cover shadow-lg inline-block mr-3" />
+          <div class="inline-block align-middle mt-4">
+        
+            <div class="font-semibold text-lg">Dhany Dewanto Putra</div>
+            <div class="text-xs text-slate-400">Accounting • Frontend Developer</div>
+          </div>
+
+          <p class="mt-4 text-slate-300 text-sm">Saya menyukai detail halus — tipografi yang tepat, grid yang konsisten, dan micro-interactions yang membuat produk terasa premium.</p>
+
+          <div class="mt-4">
+            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-md btn-gold font-semibold">Hire Me <i class='bx bx-right-arrow-alt'></i></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SKILLS (accordion + animated bars) -->
+    <section id="skills" class="bg-gradient-to-b from-[#06060b] to-[#03040a] py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl font-display font-bold" data-aos="fade-up">Skills & Tools</h2>
+        
+
+        <div class="mt-6 grid md:grid-cols-2 gap-8">
+          <!-- left column: progress bars -->
+          <div data-aos="fade-right">
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2"><div>HTML & CSS</div><div class="text-sm text-slate-400">95%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-val="95"></div></div>
+            </div>
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2"><div>JavaScript</div><div class="text-sm text-slate-400">88%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-val="88"></div></div>
+            </div>
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2"><div>React / Next</div><div class="text-sm text-slate-400">80%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-val="80"></div></div>
+            </div>
+            <div class="mb-4">
+              <div class="flex justify-between items-center mb-2"><div>TypeScript</div><div class="text-sm text-slate-400">72%</div></div>
+              <div class="skill-track"><div class="skill-fill" data-val="72"></div></div>
+            </div>
+          </div>
+
+          <!-- right column: accordion interactive skill cards -->
+          <div data-aos="fade-left">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <!-- Skill Card (click to open details) -->
+              <div class="skill-card glass p-4 rounded-lg" tabindex="0" data-skill="html">
+                <div class="flex items-center justify-between"><div><strong>HTML</strong><div class="text-xs text-slate-400">Semantic & accessible</div></div><div class="text-sm text-slate-400">95%</div></div>
+                <div class="skill-detail mt-3" id="detail-html" aria-hidden="true">
+                  <p class="text-slate-300 text-sm">HTML semantic, struktur konten, optimasi SEO on-page, dan penggunaan ARIA bila diperlukan.</p>
+                </div>
+              </div>
+
+              <div class="skill-card glass p-4 rounded-lg" tabindex="0" data-skill="css">
+                <div class="flex items-center justify-between"><div><strong>CSS</strong><div class="text-xs text-slate-400">Responsive & modern</div></div><div class="text-sm text-slate-400">92%</div></div>
+                <div class="skill-detail mt-3" id="detail-css" aria-hidden="true">
+                  <p class="text-slate-300 text-sm">Flexbox, Grid, Tailwind utilities, BEM untuk maintainability, dan teknik performa layout.</p>
+                </div>
+              </div>
+
+              <div class="skill-card glass p-4 rounded-lg" tabindex="0" data-skill="js">
+                <div class="flex items-center justify-between"><div><strong>JavaScript</strong><div class="text-xs text-slate-400">ES6+, DOM</div></div><div class="text-sm text-slate-400">88%</div></div>
+                <div class="skill-detail mt-3" id="detail-js" aria-hidden="true">
+                  <p class="text-slate-300 text-sm">Async patterns, fetch/API, modular code, dan pengoptimalan interaksi UI.</p>
+                </div>
+              </div>
+
+              <div class="skill-card glass p-4 rounded-lg" tabindex="0" data-skill="figma">
+                <div class="flex items-center justify-between"><div><strong>Figma</strong><div class="text-xs text-slate-400">Design system</div></div><div class="text-sm text-slate-400">90%</div></div>
+                <div class="skill-detail mt-3" id="detail-figma" aria-hidden="true">
+                  <p class="text-slate-300 text-sm">Component library, prototyping interaktif, handoff developer-friendly.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="glass p-4 rounded-lg text-center">Figma</div>
+          <div class="glass p-4 rounded-lg text-center">Tailwind</div>
+          <div class="glass p-4 rounded-lg text-center">React</div>
+          <div class="glass p-4 rounded-lg text-center">Vercel</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-2xl font-display font-bold" data-aos="fade-up">Selected Work</h2>
+          
+        </div>
+        <div class="text-sm text-slate-400">
+          <button class="px-3 py-2 rounded-md border border-slate-700 filterBtn active" data-filter="all">All</button>
+
+        </div>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid" role="list">
+        <!-- projects (sample) -->
+        <article class="projectCard glass rounded-xl overflow-hidden shadow-lg" data-category="web" data-id="p1" role="listitem" tabindex="0">
+          <img loading="lazy" src="E-commerce Platform Redesign Preview.png" alt="E-commerce project" />
+          <div class="p-4">
+            <div class="text-sm text-slate-400">Website</div>
+            <h3 class="font-semibold mt-1">E-commerce Redesign</h3>
+            <p class="text-sm text-slate-300 mt-2">Redesign fokus UX & konversi.</p>
+            <div class="mt-4 flex items-center justify-between"><div class="text-sm text-slate-400">React • Tailwind</div><button class="px-3 py-2 rounded-md border border-slate-700 openProject"></button></div>
+          </div>
+        </article>
+
+        <article class="projectCard glass rounded-xl overflow-hidden shadow-lg" data-category="ui" data-id="p2" role="listitem" tabindex="0">
+          <img loading="lazy" src="UI Kit & Tokens Design Overview.png" alt="Design system" />
+          <div class="p-4">
+            <div class="text-sm text-slate-400">Design System</div>
+            <h3 class="font-semibold mt-1">UI Kit & Tokens</h3>
+            <p class="text-sm text-slate-300 mt-2">Library komponen dan tokens.</p>
+            <div class="mt-4 flex items-center justify-between"><div class="text-sm text-slate-400">Figma</div><button class="px-3 py-2 rounded-md border border-slate-700 openProject"></button></div>
+          </div>
+        </article>
+
+        <article class="projectCard glass rounded-xl overflow-hidden shadow-lg" data-category="mobile" data-id="p3" role="listitem" tabindex="0">
+          <img loading="lazy" src="ChatGPT Image Aug 15, 2025, 03_50_17 AM.png" alt="Mobile prototype" />
+          <div class="p-4">
+            <div class="text-sm text-slate-400">Prototype</div>
+            <h3 class="font-semibold mt-1">Reservation App</h3>
+            <p class="text-sm text-slate-300 mt-2">Prototype interaktif.</p>
+            <div class="mt-4 flex items-center justify-between"><div class="text-sm text-slate-400">Figma</div><button class="px-3 py-2 rounded-md border border-slate-700 openProject"></button></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-8 text-center">
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="bg-[#06060a] py-12">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2 class="text-2xl font-display font-bold mb-4" data-aos="fade-up">Client Testimonials</h2>
+        <p class="text-slate-400 mb-6" data-aos="fade-up">Pendapat klien yang bekerja sama.</p>
+
+        <div class="swiper swiper--wrap" data-aos="fade-up">
+          <div class="swiper-wrapper" id="testiWrapper"></div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+<section id="contact" class="max-w-3xl mx-auto px-6 py-12">
+  <h2 class="text-3xl font-bold mb-6 text-center text-white">Hubungi Kami</h2>
+
+  <form id="contactForm" class="p-6 rounded-lg shadow-md glass space-y-4">
+    
+    <!-- Nama Lengkap -->
+    <div>
+      <label for="c_name" class="block font-semibold mb-1 text-white">Nama Lengkap <span class="text-red-400">*</span></label>
+      <input type="text" id="c_name" name="name" 
+             class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+             placeholder="Masukkan nama lengkap Anda" required>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="c_email" class="block font-semibold mb-1 text-white">Email <span class="text-red-400">*</span></label>
+      <input type="email" id="c_email" name="email" 
+             class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+             placeholder="Masukkan email aktif" required>
+    </div>
+
+    <!-- Nomor Telepon -->
+    <div>
+      <label for="c_phone" class="block font-semibold mb-1 text-white">Nomor Telepon</label>
+      <input type="tel" id="c_phone" name="phone" 
+             class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+             placeholder="Contoh: 0812-3456-7890">
+    </div>
+
+    <!-- Subject -->
+    <div>
+      <label for="c_subject" class="block font-semibold mb-1 text-white">Subject</label>
+      <input type="text" id="c_subject" name="subject" 
+             class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+             placeholder="Judul atau topik pesan">
+    </div>
+
+    <!-- Kategori Pesan -->
+    <div>
+      <label for="c_category" class="block font-semibold mb-1 text-white">Kategori Pesan</label>
+      <select id="c_category" name="category" 
+              class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400">
+        <option value="">-- Pilih Kategori --</option>
+        <option value="kerjasama" class="text-black">Kerjasama</option>
+        <option value="konsultasi" class="text-black">Konsultasi</option>
+        <option value="dukungan" class="text-black">Dukungan Teknis</option>
+        <option value="lainnya" class="text-black">Lainnya</option>
+      </select>
+    </div>
+
+    <!-- Pesan -->
+    <div>
+      <label for="c_message" class="block font-semibold mb-1 text-white">Pesan <span class="text-red-400">*</span></label>
+      <textarea id="c_message" name="message" rows="5" 
+                class="w-full p-3 border border-slate-700 bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" 
+                placeholder="Tulis pesan Anda di sini" required></textarea>
+    </div>
+
+    <!-- Tombol -->
+    <div class="flex gap-3">
+      <button type="button" id="sendBtn" 
+              class="btn-gold px-5 py-3 rounded font-semibold">
+        Kirim Pesan
+      </button>
+      <button type="reset" 
+              class="border border-slate-700 text-white px-5 py-3 rounded hover:bg-slate-800 transition">
+        Reset
+      </button>
+    </div>
+
+    <!-- Pesan Notifikasi -->
+    <p id="formMsg" class="mt-2 text-sm"></p>
+  </form>
+</section>
+
+<script>
+document.getElementById("sendBtn").addEventListener("click", function () {
+  const name = document.getElementById("c_name").value.trim();
+  const email = document.getElementById("c_email").value.trim();
+  const message = document.getElementById("c_message").value.trim();
+  const formMsg = document.getElementById("formMsg");
+
+  if (!name || !email || !message) {
+    formMsg.textContent = "❌ Harap isi semua kolom yang wajib diisi.";
+    formMsg.className = "mt-2 text-sm text-red-400";
+    return;
+  }
+
+  // Simulasi pengiriman sukses
+  formMsg.textContent = "✅ Pesan berhasil dikirim! Terima kasih sudah menghubungi kami.";
+  formMsg.className = "mt-2 text-sm text-green-400";
+  document.getElementById("contactForm").reset();
+});
+</script>
+
+
+
+  <footer class="border-t border-slate-800 py-6">
+    <div class="max-w-7xl mx-auto px-6 text-center text-sm text-slate-400">© <span id="yr"></span> Dhany Dewanto • All rights reserved</div>
+  </footer>
+
+  <!-- Project Modal -->
+  <div id="projectModal" class="fixed inset-0 hidden items-center justify-center z-50 bg-black/60" aria-hidden="true">
+    <div class="max-w-3xl w-full mx-4">
+      <div class="bg-[#071125] rounded-xl overflow-hidden">
+        <div class="p-4 flex items-center justify-between border-b border-slate-800">
+          <div class="font-semibold">Project Detail</div>
+          <button id="closeModal" class="px-3 py-1 rounded-md border border-slate-700">Close</button>
+        </div>
+        <div class="p-6">
+          <img id="modalImg" src="" alt="" class="w-full h-64 object-cover rounded-md mb-4" />
+          <h3 class="font-semibold text-xl" id="modalTitle">Title</h3>
+          <p class="mt-2 text-slate-300" id="modalDesc">Description</p>
+          <div class="mt-4 text-sm text-slate-400" id="modalTech">Tech</div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- Libs -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+
+
+  <script>
+    // --- AOS init
+    AOS.init({ duration: 700, once: true, easing: 'ease-out-quart' });
+
+    // --- Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.setAttribute('aria-hidden', String(expanded));
+    });
+
+    // --- Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.startsWith('#')) {
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+          // close mobile menu if open
+          if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded','false'); }
+        }
+      });
+    });
+
+    // --- Typewriter (robust)
+    document.querySelectorAll('.typewriter').forEach(el=>{
+      const words = JSON.parse(el.getAttribute('data-words'));
+      let i=0, idx=0, forward=true;
+      setInterval(()=>{
+        if(forward){ idx++; if(idx>words[i].length){ forward=false; setTimeout(()=>{},900); } }
+        else { idx--; if(idx===0){ forward=true; i=(i+1)%words.length; } }
+        el.textContent = words[i].slice(0,idx);
+      },50);
+    });
+
+    // --- Scroll indicator + navbar solid toggle
+    const scrollBar = document.getElementById('scrollBar');
+    const nav = document.getElementById('siteNav');
+    function onScroll(){
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if(scrollBar) scrollBar.style.width = pct + '%';
+      if(window.scrollY > 40) nav.classList.add('nav-solid'); else nav.classList.remove('nav-solid');
+    }
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    // --- Skill progress animation (once when visible)
+    const skillFills = document.querySelectorAll('.skill-fill');
+    function animateSkillBars() {
+      skillFills.forEach(el => {
+        const val = el.getAttribute('data-val') || 0;
+        el.style.width = val + '%';
+      });
+    }
+    const skillsSection = document.getElementById('skills');
+    if(skillsSection){
+      const obs = new IntersectionObserver(entries=>{
+        if(entries[0].isIntersecting) { animateSkillBars(); obs.disconnect(); }
+      }, {threshold:0.3});
+      obs.observe(skillsSection);
+    } else animateSkillBars();
+
+    // --- Skill accordion cards (click to open, close others)
+    document.querySelectorAll('.skill-card').forEach(card=>{
+      const detail = card.querySelector('.skill-detail');
+      card.addEventListener('click', ()=>{
+        // close others
+        document.querySelectorAll('.skill-detail.open').forEach(d=>{
+          if(d !== detail){ d.classList.remove('open'); d.setAttribute('aria-hidden','true'); }
+        });
+        // toggle this
+        const isOpen = detail.classList.toggle('open');
+        detail.setAttribute('aria-hidden', String(!isOpen));
+      });
+      // keyboard support
+      card.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); card.click(); } });
+    });
+
+    // --- Projects filter
+    document.querySelectorAll('.filterBtn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.filterBtn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.getAttribute('data-filter');
+        document.querySelectorAll('.projectCard').forEach(card=>{
+          const cat = card.getAttribute('data-category');
+          card.style.display = (f==='all' || cat===f) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // --- Project modal
+    const projectData = {
+      p1: { img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200', title: 'E-commerce Redesign', desc: 'Redesign fokus UX & konversi, A/B testing, analytics.', tech: 'React • Tailwind • Vercel' },
+      p2: { img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200', title: 'UI Kit & Tokens', desc: 'Design system lengkap dengan tokens & dokumentasi.', tech: 'Figma' },
+      p3: { img: 'https://images.unsplash.com/photo-1508385082359-f76a2f5b3d56?q=80&w=1200', title: 'Reservation App', desc: 'Prototype interaktif untuk booking dan notifikasi.', tech: 'Figma • React Native' }
+    };
+    document.querySelectorAll('.openProject').forEach(btn=>btn.addEventListener('click', (e)=>{
+      const id = e.target.closest('[data-id]')?.getAttribute('data-id');
+      if(!id) return;
+      const d = projectData[id];
+      document.getElementById('modalImg').src = d.img;
+      document.getElementById('modalTitle').innerText = d.title;
+      document.getElementById('modalDesc').innerText = d.desc;
+      document.getElementById('modalTech').innerText = d.tech;
+      const modal = document.getElementById('projectModal');
+      modal.classList.remove('hidden'); modal.setAttribute('aria-hidden','false'); document.documentElement.classList.add('modal-open');
+      // focus for accessibility
+      modal.querySelector('button')?.focus();
+    }));
+    document.getElementById('closeModal')?.addEventListener('click', ()=>{
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden'); modal.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('modal-open');
+    });
+
+    // --- Testimonials: populate 10 slides + init Swiper
+    const testiData = [
+      {name:'Andi Prasetyo',role:'CEO — Startup A',img:'https://randomuser.me/api/portraits/men/32.jpg',text:'Dhany sangat profesional dan hasil kerjanya luar biasa.'},
+      {name:'Siti Rahma',role:'Founder — Brand B',img:'https://randomuser.me/api/portraits/women/44.jpg',text:'Website nya elegan dan membantu meningkatkan penjualan.'},
+      {name:'Budi Santoso',role:'CMO — Company C',img:'https://randomuser.me/api/portraits/men/65.jpg',text:'Design system yang dibuat rapi dan mudah diimplementasikan.'},
+      {name:'Rina Wijaya',role:'Product Lead — D',img:'https://randomuser.me/api/portraits/women/22.jpg',text:'Prototype cepat membantu kami pitching ke investor.'},
+      {name:'Anton',role:'Founder — E',img:'https://randomuser.me/api/portraits/men/12.jpg',text:'Komitmen waktu baik dan komunikasi jelas.'},
+      {name:'Maya',role:'Design Director',img:'https://randomuser.me/api/portraits/women/56.jpg',text:'Tipografi dan visual yang sangat konsisten.'},
+      {name:'Riko',role:'Head of Growth',img:'https://randomuser.me/api/portraits/men/44.jpg',text:'Landing page yang meningkatkan konversi kami.'},
+      {name:'Lina',role:'Founder — F',img:'https://randomuser.me/api/portraits/women/33.jpg',text:'Sangat responsif dan deliver tepat waktu.'},
+      {name:'Dewa',role:'CTO — G',img:'https://randomuser.me/api/portraits/men/77.jpg',text:'Kode bersih dan mudah dipelihara.'},
+      {name:'Nina',role:'Marketing Lead',img:'https://randomuser.me/api/portraits/women/12.jpg',text:'Desain yang profesional dan modern.'}
+    ];
+    const testiWrapper = document.getElementById('testiWrapper');
+    testiData.forEach(t=>{
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `
+        <div class="testimonial-card glass p-6 flex flex-col items-center gap-3 text-center">
+          <img src="${t.img}" alt="${t.name}" />
+          <strong>${t.name}</strong>
+          <div class="text-xs text-slate-400">${t.role}</div>
+          <p class="mt-2 text-slate-300">${t.text}</p>
+        </div>`;
+      testiWrapper.appendChild(slide);
+    });
+
+    const swiper = new Swiper('.swiper', {
+      slidesPerView:1, spaceBetween:20, loop:true, autoplay:{delay:4200, disableOnInteraction:false},
+      pagination:{el:'.swiper-pagination', clickable:true}, navigation:{nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev'},
+      breakpoints:{768:{slidesPerView:2}}
+    });
+
+    // --- GSAP subtle entrance for elements
+    gsap.from('.glass', { opacity: 0, y: 18, stagger: 0.03, duration: 0.7 });
+
+    // --- Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // --- Contact: EmailJS flow (example)
+    // 1) Create account at https://www.emailjs.com/ ; 2) copy your userID, serviceID, templateID and paste below.
+    const EMAILJS_USER = ''; // <-- put your EmailJS user ID e.g. 'user_xxx'
+    const EMAILJS_SERVICE = ''; // <-- service id
+    const EMAILJS_TEMPLATE = ''; // <-- template id
+
+    async function sendEmailJS(data){
+      // minimal fetch to EmailJS REST API (requires public user id). If empty, fallback to Formspree style message.
+      if(!EMAILJS_USER || !EMAILJS_SERVICE || !EMAILJS_TEMPLATE) {
+        throw new Error('EmailJS not configured');
+      }
+      const payload = {
+        service_id: EMAILJS_SERVICE,
+        template_id: EMAILJS_TEMPLATE,
+        user_id: EMAILJS_USER,
+        template_params: data
+      };
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error('EmailJS request failed');
+      return res;
+    }
+
+    // Form handler (tries EmailJS, else shows instructions / fallback)
+    document.getElementById('sendBtn').addEventListener('click', async ()=>{
+      const name = document.getElementById('c_name').value.trim();
+      const email = document.getElementById('c_email').value.trim();
+      const subject = document.getElementById('c_subject').value.trim();
+      const message = document.getElementById('c_message').value.trim();
+      const formMsg = document.getElementById('formMsg');
+      if(!name || !email || !message){ formMsg.textContent = 'Isi semua field yang wajib.'; return; }
+      formMsg.textContent = 'Mengirim...';
+      try {
+        await sendEmailJS({ from_name: name, from_email: email, subject, message });
+        formMsg.textContent = 'Pesan terkirim. Terima kasih!';
+        document.getElementById('contactForm').reset();
+      } catch(err){
+        // fallback: provide instructions to switch to Formspree or configure EmailJS
+        formMsg.innerHTML = 'EmailJS belum dikonfigurasi. <br/>Opsi: <ol class="ml-4 list-decimal"><li>Daftar di EmailJS, dapatkan user/service/template ID dan isi di file.</li><li>Atau ganti form ke Formspree (ganti action dan type="submit").</li></ol>';
+        console.warn(err);
+      }
+    });
+
+    // Accessibility: trap focus in modal when open (basic)
+    document.addEventListener('keydown', (e)=>{
+      const modal = document.getElementById('projectModal');
+      if(e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden'); modal.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('modal-open');
+      }
+    });
+
+  </script>
+</body>
+</html>
